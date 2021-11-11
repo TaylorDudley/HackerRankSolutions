@@ -1,0 +1,71 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+    /*
+     * Complete the 'countingValleys' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER steps
+     *  2. STRING path
+     */
+
+    public static int countingValleys(int steps, string path)
+    {
+            // Initiazlize variables for the current sea-level, the num of valleys, and a character c.
+            int level = 0; // 0 is sea-level
+            int valleys = 0;
+            char c;
+            
+        for (int i = 0; i < steps; i++)
+        {
+            // Get the character at path[i]
+            c = path[i];
+            
+            if c is going up, add 1 to level.
+            if (c == 'U')
+            {
+                level++;
+                
+                // if c is going up and the level is now 0
+                // This means that level was -1, or below sea-level, because of this, increment the number
+                // of valleys by 1.
+                if (level == 0)
+                {
+                    valleys++;
+                }
+            }
+            
+            // This means c == 'D', subtract 1 from level.
+            else
+            {
+                level--;
+            }
+        }
+        return valleys;
+    }
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        // Test Values
+        int steps = 8;
+        string path = "UDDDUDUU";
+        int result = Result.countingValleys(steps, path);
+    }
+}
