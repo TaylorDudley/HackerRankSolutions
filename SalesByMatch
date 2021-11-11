@@ -1,0 +1,69 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+    /*
+     * Complete the 'sockMerchant' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. INTEGER_ARRAY ar
+     */
+
+    public static int sockMerchant(int n, List<int> ar)
+    {
+        // Initializing variables, number of pairs, number to remove, index. 
+        int num = 0;
+        int temp = 0;
+        int numToRemove = 0;
+        int index = 0;
+        for (int i = 0; i < ar.Count; i++)
+        {
+            // Set the temp value = the number of appearances of a value at ar[i]
+            temp = ar.Count(im => im == ar[i]);
+            // Set the number that needs to be removed.
+            numToRemove = ar[i];
+            
+            // > 1 means 1 or more pair.
+            if (temp > 1 )
+            {
+                // temp now = number of pairs, Math.Floor cancels out 0.5 values or half of a pair. 
+                temp = (int)Math.Floor((double)(temp / 2));
+                num += temp;
+            }
+            
+            // Remove all of the numbers from ar[i]
+            ar.RemoveAll(item => item == numToRemove);
+            
+            // Start i over at 0. (first element of the array)
+            i--;
+        }
+        return num;
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        // Test Input
+        int n = 9;
+        List<int> ar = new List<int>() { 10, 20, 20, 10, 10, 30, 50, 10, 20 };
+        int result = Result.sockMerchant(n, ar);
+
+    }
+}
