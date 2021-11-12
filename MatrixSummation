@@ -1,0 +1,49 @@
+class Result
+{
+
+    /*
+     * Complete the 'findBeforeMatrix' function below.
+     *
+     * The function is expected to return a 2D_INTEGER_ARRAY.
+     * The function accepts 2D_INTEGER_ARRAY after as parameter.
+     */
+
+    public static List<List<int>> findBeforeMatrix(List<List<int>> after)
+    {
+
+        // Create new list and temp variable
+        List<List<int>> before = new List<List<int>>();
+        int temp = 0;
+
+        for (int i = 0; i <= after.Count - 1; i++)
+        {
+            // Create a list of ints for the current row
+            List<int> beforeRow = new List<int>();
+            for (int j = 0; j <= after[i].Count - 1; j++)
+            {
+
+                // Ifs follow the format of the question
+                if (i < 1 && j < 1)
+                {
+                    beforeRow.Add(after[i][j]);
+                    temp = temp + after[i][j];
+                }
+                else if (i > 0 && j > 0)
+                {
+                    beforeRow.Add(after[i][j] - temp);
+                }
+                else
+                {
+                    beforeRow.Add(after[i][j] - after[0][0]);
+                    temp = temp + after[i][j] - after[0][0];
+                }
+
+            }
+
+            before.Add(beforeRow);
+            
+        }
+        return before;
+    }
+
+}
