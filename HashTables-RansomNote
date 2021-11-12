@@ -1,0 +1,102 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+    /*
+     * Complete the 'checkMagazine' function below.
+     *
+     * The function accepts following parameters:
+     *  1. STRING_ARRAY magazine
+     *  2. STRING_ARRAY note
+     */
+
+    public static void checkMagazine(List<string> magazine, List<string> note)
+    {
+        bool flag = false;
+        int timeToStop = magazine.Count - note.Count;
+
+        List<string> result = magazine.Except(note).ToList();
+
+        if (result.Count < timeToStop)
+        {
+            Console.Out.Write("Yes");
+        }
+        else if (result.Count < timeToStop)
+        {
+            Console.Out.Write("Yes");
+        } 
+        else
+        {
+            Console.Out.Write("No");
+        }
+
+        //for (int i = 0; i < note.Count; i++)
+        //{
+        //    if (magazine.Contains(note[i]))
+        //    {
+        //        magazine.Remove(note[i]);
+        //    }
+        //    if (magazine.Count == timeToStop )
+        //    {
+        //        Console.Out.Write("Yes");
+        //        flag = true;
+        //    }
+        //}
+
+        //if (flag == false)
+        //{
+        //    Console.Out.Write("No");
+        //}
+
+
+
+        //int isCorrect = 0;
+        //for (int i = 0; i < note.Count; i++)
+        //{
+        //    for (int j = 0; j < magazine.Count; j++)
+        //    {
+        //        if (magazine[j] == note[i])
+        //        {
+        //            isCorrect++;
+        //            magazine[j] = "";
+        //            break;
+        //        }
+        //    }
+        //}
+        //if (isCorrect == note.Count)
+        //{
+        //    Console.Out.Write("Yes");
+        //} else
+        //{
+        //    Console.Out.Write("No");
+        //}
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+
+        List<string> magazine = new List<string>() { "apgo", "clm", "w", "lxkvg", "mwz", "elo", "bg", "elo", "lxkvg", "elo", "apgo", "apgo", "w", "elo", "bg" };
+
+        List<string> note = new List<string>() { "elo", "lxkvg", "bg", "mwz", "clm", "w" };
+
+        Result.checkMagazine(magazine, note);
+    }
+}
+
