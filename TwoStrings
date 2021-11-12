@@ -1,0 +1,70 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+
+
+class Result
+{
+
+    /*
+     * Complete the 'commonSubstring' function below.
+     *
+     * The function accepts following parameters:
+     *  1. STRING_ARRAY a
+     *  2. STRING_ARRAY b
+     */
+
+    public static void commonSubstring(List<string> a, List<string> b)
+    {
+
+        // Create a flag for whether a letter is found or not.
+        bool flag = false;
+        for (int i = 0; i < a.Count; i++)
+        {
+            // set flag to false each iteration
+            flag = false;
+
+            // create new hash set of characters for each c in a[i] string
+            var set = new HashSet<char>(a[i].Select(c => c));
+
+            // iterate and look if set conatins the char of b[i]
+            foreach (var c in b[i])
+            {
+                if (set.Contains(c))
+                {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                Console.Out.WriteLine("YES");
+            } else
+            {
+                Console.Out.WriteLine("NO");
+            }
+        }
+    }
+
+}
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        // Test Input
+        List<string> a = new List<string>() {"hello", "hi" };
+        List<string> b = new List<string>() { "world", "bye"};
+        Result.commonSubstring(a, b);
+    }
+}
