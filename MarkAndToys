@@ -1,0 +1,51 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+    /*
+     * Complete the 'maximumToys' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY prices
+     *  2. INTEGER k
+     */
+    public static int maximumToys(List<int> prices, int k)
+    {
+        // Variable for the counter
+        int count = 0;
+
+        // Sort the list in ascending order (least to greatest means the maximum amount of toys can be purchased)
+        prices.Sort();
+        // If k is >= prices[count] then he can afford that toy and will "buy the toy" and move to the next.
+        while (k >= prices[count])
+        {
+            k = k - prices[count];
+            count++;
+        }
+        return count;
+    }
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        // Test Input
+        int k = 50;
+        List<int> prices = new List<int>() { 1, 12, 5, 111, 200, 1000, 10 };
+        int result = Result.maximumToys(prices, k);
+    }
+}
