@@ -47,3 +47,16 @@ class Result
     }
 
 }
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        //Test Input
+        List<List<int>> after = new List<List<int>>();
+        after.Add(new List<int>() {1 , 2 });
+        after.Add(new List<int>() { 3, 4 });
+        List<List<int>> result = Result.findBeforeMatrix(after);
+
+    }
+}
