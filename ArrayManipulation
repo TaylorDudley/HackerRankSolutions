@@ -1,0 +1,71 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+    /*
+     * Complete the 'arrayManipulation' function below.
+     *
+     * The function is expected to return a LONG_INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. 2D_INTEGER_ARRAY queries
+     */
+
+    public static long arrayManipulation(int n, List<List<int>> queries)
+    {
+        // Variables: arr size n of 0s, 3 values inside list.
+        long[] arr = new long[n];
+        int quantity = 0;
+        int value = 0;
+        int location = 0;
+
+        for (int i = 0; i < queries.Count; i++)
+        {
+            location = queries[i][0];
+            quantity = queries[i][1];
+            value = queries[i][2];
+
+            // From the location - 1, to quantity, set arr[j] += value
+            for (int j = location-1; j < quantity; j++)
+            {
+                arr[j] = arr[j] + value;
+
+
+
+            }
+        }
+
+        // return the highest value
+        return arr.Max();
+    }
+
+}
+// This solution timesout with large inputs
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        // Test Input
+        int n = 10;
+        List<List<int>> queries = new List<List<int>>();
+        queries.Add(new List<int>() {1, 2, 100 });
+        queries.Add(new List<int>() { 2, 5, 100 });
+        queries.Add(new List<int>() { 3, 4, 100 });
+
+        long result = Result.arrayManipulation(n, queries);
+
+    }
+}
