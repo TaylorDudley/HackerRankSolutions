@@ -1,0 +1,70 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+    /*
+     * Complete the 'gridChallenge' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts STRING_ARRAY grid as parameter.
+     */
+
+    public static string gridChallenge(List<string> grid)
+    {
+
+        // Iterate through ch list and fill with each string of grid.
+        List<char[]> ch = new List<char[]>();
+        for (int i = 0; i < grid.Count; i++)
+        {
+            ch.Add(grid[i].ToCharArray());
+            Array.Sort<char>(ch[i]);
+        }
+
+
+        for (int i = 0; i < ch.Count -1; i++)
+        {
+            for (int j = 0; j < ch[i].Length - 1; j++)
+            {
+
+                // just check one row in front and one col below for each loop.
+                char temp = ch[i][j];
+                char row = ch[i + 1][j];
+                char col = ch[i][j +1];
+                if (temp > row || temp > col)
+                {
+                    return "NO";
+                }
+            }
+        }
+
+
+
+        return "YES";
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        // Test Input
+        //List<string> grid = new List<string>() { "hcd", "awc", "shm"  };
+        //List<string> grid = new List<string>() { "sur", "eyy", "gxy" };
+        List<string> grid = new List<string>() { "kc", "iu" };
+        string result = Result.gridChallenge(grid);
+    }
+}
