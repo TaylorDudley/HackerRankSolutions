@@ -14,55 +14,51 @@ using System;
 
 class Result
 {
-
     /*
      * Complete the 'countPalindromes' function below.
      *
      * The function is expected to return an INTEGER.
      * The function accepts STRING s as parameter.
      */
-
     public static int countPalindromes(string s)
     {
-
         int count = 0;
         for (int i = 0; i < s.Length; i++)
         {
-
-            // Odd Palindromes
-            int firstElement = i;
-            int iter = i;
-            while (firstElement >=0 && iter < s.Length && s[firstElement] == s[iter])
+            // Checks for palindromes at a center position i
+            // incriment count for each palindrome found
+            // stop the loops when the iteration no longer is a palindrome
+            // Odd Palindromes ( 'a' 'aba' 'aabaa' .. etc)
+            int leftOfCenter = i;
+            int center = i;
+            while (leftOfCenter >= 0 && center < s.Length && s[leftOfCenter] == s[center])
             {
                 count++;
-                firstElement--;
-                iter++;
+                leftOfCenter--;
+                center++;
             }
-
-            // Even Palindromes
+            
+            // Even centers need to be checked also, make the center i + 1
+            // Even Palindromes ( 'aa' 'abba' 'aabbaa' .. etc)
             // Reset values
-            firstElement = i;
-            iter = i + 1;
-            while (firstElement>= 0 && iter < s.Length && s[firstElement] == s[iter])
+            leftOfCenter = i;
+            center = i + 1;
+            while (leftOfCenter >= 0 && center < s.Length && s[leftOfCenter] == s[center])
             {
                 count++;
-                firstElement--;
-                iter++;
+                leftOfCenter--;
+                center++;
             }
         }
         return count;
     }
 }
 
-
-
 class Solution
 {
     public static void Main(string[] args)
     {
-
-        string s = "aaa";
+        string s = "aabbaa";
         int result = Result.countPalindromes(s);
-
     }
 }
