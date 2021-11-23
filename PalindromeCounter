@@ -58,7 +58,10 @@ class Solution
 {
     public static void Main(string[] args)
     {
+        // Test Input
         string s = "aabbaa";
+        //string s = "aba";
+        //string s = "aaa";
         int result = Result.countPalindromes(s);
     }
 }
