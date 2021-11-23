@@ -1,0 +1,65 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+
+
+class Result
+{
+
+    /*
+     * Complete the 'palindromeIndex' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts STRING s as parameter.
+     */
+
+    public static int palindromeIndex(string s)
+    {
+        int result = -1;
+        int length = s.Length;
+
+        // Iterate through half
+        for (int i = 0; i < length/2; i++)
+        {
+            // Make sure the ends are the same
+            if (s[i] == s[length-1-i])
+            {
+                continue;
+            }
+            // is element i + 1 = to the last character? then return the current i \
+            // (thats because removing the first character will result in a palindrome)
+            else if (s[i + 1] == s[length - i - 1] && s[i + 2] == s[length-i-2])
+            {
+                return i;
+            }
+            // (Removing the character at length - i - 1 will result in a palindrome)
+            // Length - 1 is the last element. - i is the iteration before finding the error.
+            else if (s[i] == s[length - i - 2] && s[i + 1] == s[length - i - 3])
+            {
+                return length - i - 1;
+            }
+        } //END for
+        // Already a Palindrome
+        return result;
+    }
+}
+class Solution
+{
+    public static void Main(string[] args)
+    {
+    // Test Input
+            string s = "aaab";
+            int result = Result.palindromeIndex(s);
+    }
+}
