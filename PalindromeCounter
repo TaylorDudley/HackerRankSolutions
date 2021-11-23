@@ -29,7 +29,7 @@ class Result
         for (int i = 0; i < s.Length; i++)
         {
 
-            // Odd Palendromes
+            // Odd Palindromes
             int firstElement = i;
             int iter = i;
             while (firstElement >=0 && iter < s.Length && s[firstElement] == s[iter])
@@ -39,7 +39,7 @@ class Result
                 iter++;
             }
 
-            // Even Palendromes
+            // Even Palindromes
             // Reset values
             firstElement = i;
             iter = i + 1;
