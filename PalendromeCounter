@@ -1,0 +1,68 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+    /*
+     * Complete the 'countPalindromes' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts STRING s as parameter.
+     */
+
+    public static int countPalindromes(string s)
+    {
+
+        int count = 0;
+        for (int i = 0; i < s.Length; i++)
+        {
+
+            // Odd Palendromes
+            int firstElement = i;
+            int iter = i;
+            while (firstElement >=0 && iter < s.Length && s[firstElement] == s[iter])
+            {
+                count++;
+                firstElement--;
+                iter++;
+            }
+
+            // Even Palendromes
+            // Reset values
+            firstElement = i;
+            iter = i + 1;
+            while (firstElement>= 0 && iter < s.Length && s[firstElement] == s[iter])
+            {
+                count++;
+                firstElement--;
+                iter++;
+            }
+        }
+        return count;
+    }
+}
+
+
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+
+        string s = "aaa";
+        int result = Result.countPalindromes(s);
+
+    }
+}
